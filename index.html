@@ -1,0 +1,45 @@
+<!doctype html><html lang="fi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="theme-color" content="#111e24"><meta name="description" content="Neljän pelaajan Ruuhka-lautapeli ihmisille ja AI:lle."><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Ruuhka"><meta name="apple-mobile-web-app-status-bar-style" content="default"><link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png"><title>Ruuhka</title><link rel="stylesheet" href="style.css?v=tunnel-filled-4"></head><body><main><header><div><p class="eyebrow">NELJÄ PELAAJAA · YKSI KAUPUNKI</p><h1>Ruuhka<span>.</span></h1></div><div class="header-actions"><button id="install-app" hidden>Asenna</button><button id="new">Uusi peli</button></div></header><section id="setup"><h2>Ketkä ovat ratissa?</h2><p>Valitse neljä pelaajaa ja halutessasi 30 sekunnin vuoroajastin.</p><div class="mode-options"><label class="level-select">Pelitaso<select id="level"><option value="1">1 · Ruuhka</option><option value="2">2 · Pakettitoimitukset</option></select></label><label class="timer-option"><input id="timer-enabled" type="checkbox"> 30 s ajastin</label></div><p class="install-hint">iPad ja iPhone: lisää peli Koti-valikkoon Safarin Jaa-valikosta.</p><div id="players"></div><button id="start" class="primary">Kokoa lauta ja aloita</button></section><section id="game" hidden><div id="scores"></div><div class="layout"><section class="board-wrap"><div id="board" aria-label="Ruuhka-pelilauta"></div></section><aside><p id="phase" class="eyebrow"></p><h2 id="turn"></h2><p id="status" role="status" aria-live="polite"></p><div id="choices"></div><button id="end" class="primary">Valmis</button><button id="magnet" hidden>Käytä supermagneetti</button><button id="undo">Peru viimeisin siirto</button><button id="show-rules">Pelisäännöt ja kosketusohje</button></aside></div></section><dialog id="handoff"><p class="eyebrow" id="handoff-phase"></p><p class="handoff-label">Seuraava pelaaja:</p><h2 id="handoff-title"></h2><button id="ready" class="primary">Aloita</button></dialog><dialog id="restart"><h2>Aloitetaanko uusi peli?</h2><p>Nykyinen peli korvataan uudella.</p><button id="restart-yes">Uusi peli</button><button id="restart-no">Jatka peliä</button></dialog></main><dialog id="rules" aria-labelledby="rules-title"><div class="rules-header"><h2 id="rules-title">Pelisäännöt ja kosketusohje</h2><button id="close-rules" aria-label="Sulje peliohje">Sulje ✕</button></div><div class="rules-content">
+<h3>Tavoite ja aloitus</h3>
+<p>Vie ensin omat kolme autoasi niiden väriä ja numeroa vastaaviin EXIT-ruutuihin. Voitat, kun sen jälkeen ajat punaisen auton mihin tahansa EXIT-ruutuun, vaikka se olisi jo käytetty.</p>
+<p>Pelaajia on aina neljä: vihreä, pinkki, oranssi ja ruskea. Kullekin voi valita ihmisen tai AI:n. Pelitaso 1 sisältää peruspelin. Tasolla 2 toimitetaan lisäksi paketit ja käytössä on supermagneetti.</p>
+<p>Aluksi pelaajat vaihtavat edellisen pelaajan autojen paikkoja: vihreä ruskean, pinkki vihreän, oranssi pinkin ja ruskea oranssin. Raahaa auto saman pelaajan toisen auton päälle tai napauta kahta autoa peräkkäin. Voit tehdä useita vaihtoja. Lopeta painamalla <strong>Valmis</strong>. Seuraava pelaaja aloittaa painamalla <strong>Aloita</strong>.</p>
+<h3>Vuoron järjestys</h3>
+<p>Siirrä ensin haluamasi esteet ja vasta sitten autot. Voit myös jättää esteet siirtämättä. Ensimmäisen autosiirron jälkeen esteitä ei saa enää siirtää samalla vuorolla. Myös punaisen auton siirtäminen ja magneetin käyttö aloittavat autovaiheen. Lopeta vuoro painamalla <strong>Päätä vuoro</strong>.</p>
+<h3>Esteet</h3>
+<p>Este varaa kaksi vierekkäistä ruutua. Niissä ei saa olla autoa tai toista estettä. Estettä saa siirtää vapaavalintaisen matkan yhteen suuntaan pysty- tai vaakasuoraan sen asennosta riippumatta. Samaa estettä saa siirtää vain kerran vuorossa, mutta useita eri esteitä saa siirtää.</p>
+<p>Este ei saa mennä autojen, muiden esteiden, tunnelien, EXIT-ruutujen tai postitoimistojen päälle eikä niiden yli. Raahatessa korostus näyttää koko esteen sijainnin, ei vain yhtä ruutua.</p>
+<h3>Tavalliset autot</h3>
+<p>Voit siirtää vain omia autojasi sekä yhteistä punaista autoa. Kutakin omaa tavallista autoa saa siirtää kerran vuorossa, vapaavalintaisen matkan yhteen suuntaan pysty- tai vaakasuoraan. Vuorossa saa siirtää useita omia autoja.</p>
+<p>Auto saa ohittaa muita autoja ja pysähtyä yhden auton päälle. Ruudussa saa olla enintään kaksi autoa. Auto ei saa kulkea esteen yli. Jos ruudussa on kaksi autoa, napauta ruutua ja valitse siirrettävä auto näkyviin tulevista painikkeista.</p>
+<h3>Tunnelit</h3>
+<p>Tunneliruutuun ajaminen siirtää auton suoraan toiseen samanväriseen tunneliin. Valitse ulostulo raahaamalla auto haluamaasi korostettuun tunneliruutuun. Ulostulossa saa ennestään olla enintään yksi auto. Tunnelisiirtymän jälkeen kyseistä autoa ei voi enää siirtää samalla vuorolla; muita omia autoja voi yhä siirtää.</p>
+<p>Auton on ensin liikuttava pois tunneliruudusta ennen kuin se voi käyttää tunnelia uudelleen. Tunneliruutua ei voi ohittaa ajamalla sen yli. Myös punainen auto voi käyttää tunneleita.</p>
+<h3>EXIT-ruudut</h3>
+<p>Auto ei saa ohittaa mitään EXIT-ruutua. Tavallinen auto saa ajaa vain käyttämättömään EXIT-ruutuun, jonka väri ja numero vastaavat autoa. EXIT <strong>1·2·3</strong> hyväksyy minkä tahansa samanvärisen auton numeron, mutta sekin on käytettävissä vain kerran. EXIT-ruutuun ajettu auto poistuu laudalta ja käytetty ruutu harmaantuu.</p>
+<h3>Punainen auto</h3>
+<p>Kaikki pelaajat saavat siirtää punaista autoa jo pelin alusta lähtien. Sitä saa siirtää omalla vuorolla enintään kolme suoraa osuutta, esimerkiksi vaakaan, pystyyn ja taas vaakaan. Jokaisen osuuden pituus on vapaavalintainen.</p>
+<p>Voit raahata punaisen auton kohteeseen, johon peli löytää laillisen reitin jäljellä olevilla osuuksilla. Yksi raahaus voi käyttää useita osuuksia. Myös erilliset raahaukset kuluttavat samaa vuorokohtaista kolmen osuuden määrää. Punainen auto saa käyttää tunneleita: tunneliruutuun ajaminen siirtää sen suoraan toiseen samanväriseen tunneliruutuun. Tunneliruutua ei saa ohittaa ajamalla sen yli. Tunnelisiirtymä päättää punaisen auton liikkumisen tältä vuorolta.</p>
+<p>Punaisella autolla saa poistua laudalta vasta, kun kaikki omat kolme autoa ovat poistuneet. Sen EXIT-ruudun väriä tai numeroa ei tarvitse sovittaa: mikä tahansa EXIT kelpaa, myös käytetty ruutu, jossa on jo auto. Punaisella ulos ajanut pelaaja voittaa.</p>
+<h3>Taso 2: paketit</h3>
+<p>Jokainen tavallinen auto kuljettaa oman numeronsa pakettia; punaisella autolla ei ole pakettia. Ennen EXIT-ruutuun ajamista auton pitää pysähtyä omanväriseen postitoimistoon. Pelkkä postitoimiston yli ajaminen ei toimita pakettia. Toimituksen jälkeen auto voi jatkaa EXIT-ruutua kohti seuraavalla omalla vuorolla.</p>
+<p>Postitoimistoon saa pysähtyä vain samanvärinen auto, joka toimittaa vielä kuljettamaansa pakettia. Pakettinsa jo toimittanut auto tai punainen auto ei saa pysähtyä siihen. Autot saavat kuitenkin ohittaa postitoimiston. Auton pakettimerkki poistuu toimituksen jälkeen, ja postitoimisto harmaantuu kaikkien kolmen paketin toimituksen jälkeen.</p>
+<h3>Taso 2: supermagneetti</h3>
+<p>Jokaisella pelaajalla on yksi supermagneetti koko peliin. Valitse <strong>Käytä supermagneetti</strong> ja raahaa oma auto punaisen auton ruutuun. Punaisen auton on oltava ruudussa yksin, eikä se saa olla tunneliruudussa. Etäisyys saa olla enintään viisi ruutua pysty- ja vaakasuunnassa yhteensä laskettuna. Välissä olevat esteet eivät haittaa.</p>
+<p>Magneetti kuluu vain onnistuneesta siirrosta. Siirto käyttää kyseisen auton tämän vuoron siirron ja lukitsee esteiden siirtämisen vuoron loppuun.</p>
+<h3>Ajastin ja vuoron vaihto</h3>
+<p>Valinnainen 30 sekunnin ajastin alkaa <strong>Aloita</strong>-painikkeesta. Se koskee myös aloitusvaihtoja. Aktiivisen pelaajan ruudussa kasvava aikaviiva muuttuu punaiseksi, kun jäljellä on enintään viisi sekuntia. Ajan päätyttyä käynnissä olevan valinnan tai raahauksen saa vielä viimeistellä, minkä jälkeen vuoro vaihtuu. Uutta siirtoa ei saa aloittaa.</p>
+<p>Ilman ajastinta vuoro päättyy pelaajan painikkeesta. AI päättää omat vuoronsa automaattisesti. <strong>Peru viimeisin siirto</strong> palauttaa viimeisimmän siirron; ajastimeen ei palauteta aikaa.</p>
+</div></dialog><div id="app-update" class="app-update" role="status" hidden><span>Uusi versio on valmis. Päivittäminen aloittaa pelin alusta.</span><button id="update-app">Päivitä peli</button></div><script src="game.js"></script><script src="pwa.js" defer></script></body></html>
+
+
+
+
+
+
+
+
+
+
+
+
+

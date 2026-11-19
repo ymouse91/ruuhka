@@ -1,0 +1,7 @@
+import fs from 'node:fs';import {createHash} from 'node:crypto';import path from 'node:path';import {fileURLToPath} from 'node:url';
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..'),output=path.join(root,'dist');fs.mkdirSync(output,{recursive:true});
+for(const name of ['index.html','style.css','game.js','pwa.js','sw.js','manifest.webmanifest','.nojekyll'])fs.copyFileSync(path.join(root,name),path.join(output,name));
+fs.cpSync(path.join(root,'icons'),path.join(output,'icons'),{recursive:true});fs.mkdirSync(path.join(output,'assets','cars'),{recursive:true});for(const color of ['green','pink','orange','brown','red'])fs.copyFileSync(path.join(root,'assets','cars',color+'-v1.png'),path.join(output,'assets','cars',color+'-v1.png'));console.log('Ruuhka: julkaisutiedostot valmiina dist-kansiossa.');
+
+function filesUnder(folder){return fs.readdirSync(folder,{withFileTypes:true}).flatMap(entry=>entry.isDirectory()?filesUnder(path.join(folder,entry.name)):[path.join(folder,entry.name)]);}
+const hash=createHash('sha256');for(const file of filesUnder(output).filter(file=>path.basename(file)!=='sw.js').sort()){hash.update(path.relative(output,file).split(path.sep).join('/'));hash.update(fs.readFileSync(file));}const version=hash.digest('hex').slice(0,16),worker=path.join(output,'sw.js');fs.writeFileSync(worker,fs.readFileSync(worker,'utf8').replace(/const VERSION='[^']+';/,"const VERSION='"+version+"';"));console.log('Offline-version tunniste: '+version);

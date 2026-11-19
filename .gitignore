@@ -1,0 +1,6 @@
+dist/
+node_modules/
+*.log
+img*.pdf
+assets/**/creation-notes.md
+assets/tunnels/*-v1.png

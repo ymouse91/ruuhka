@@ -1,0 +1,35 @@
+{
+  "id": "./",
+  "name": "Ruuhka",
+  "short_name": "Ruuhka",
+  "description": "Neljän pelaajan Ruuhka-lautapeli. Pelaa samalla laitteella ihmisiä tai AI:ta vastaan.",
+  "lang": "fi",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#111e24",
+  "theme_color": "#111e24",
+  "categories": [
+    "games"
+  ],
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
