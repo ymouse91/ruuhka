@@ -2,7 +2,7 @@
 const VERSION='2026-11-19-pwa-1';
 const PREFIX='ruuhka:'+new URL(self.registration.scope).pathname+':';
 const CACHE=PREFIX+VERSION;
-const PRECACHE=['./','./index.html','./style.css','./game.js','./pwa.js','./manifest.webmanifest','./icons/icon.svg','./icons/icon-192.png','./icons/icon-512.png','./icons/maskable-512.png','./icons/apple-touch-icon.png','./icons/favicon-32.png','./assets/cars/green-v1.png','./assets/cars/pink-v1.png','./assets/cars/orange-v1.png','./assets/cars/brown-v1.png','./assets/cars/red-v1.png','./assets/tunnels/black-v1.png','./assets/tunnels/white-v1.png'];
+const PRECACHE=['./','./index.html','./style.css','./game.js','./pwa.js','./manifest.webmanifest','./icons/icon.svg','./icons/icon-192-v2.png','./icons/icon-512-v2.png','./icons/maskable-512-v2.png','./icons/apple-touch-icon-v2.png','./icons/favicon-32-v2.png','./assets/cars/green-v1.png','./assets/cars/pink-v1.png','./assets/cars/orange-v1.png','./assets/cars/brown-v1.png','./assets/cars/red-v1.png','./assets/tunnels/black-v1.png','./assets/tunnels/white-v1.png'];
 self.addEventListener('install',event=>{event.waitUntil((async()=>{const cache=await caches.open(CACHE);await cache.addAll(PRECACHE.map(path=>new Request(new URL(path,self.registration.scope),{cache:'reload'})));})());});
 self.addEventListener('activate',event=>{event.waitUntil((async()=>{const keys=await caches.keys();await Promise.all(keys.filter(key=>key.startsWith(PREFIX)&&key!==CACHE).map(key=>caches.delete(key)));await self.clients.claim();})());});
 self.addEventListener('message',event=>{if(event.data?.type==='SKIP_WAITING')self.skipWaiting();});
